@@ -22,13 +22,13 @@ export default function App() {
   const setTimer = (count) => {
     console.log(count);
     let app = [...count];
-    app = app.slice(1, app.length);
+    app.pop();
     setAppState(app);
   };
 
   const onColClick = (cellId) => {
     if (appState.length) {
-      const apps1 = [cellId, ...appState];
+      const apps1 = [...appState, cellId];
       setAppState(apps1);
     } else {
       setAppState([cellId]);
