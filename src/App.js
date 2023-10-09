@@ -49,7 +49,7 @@ export default function App() {
 
 const Table = ({ appState, onColClick }) => {
   return (
-    <table>
+    <table className="table">
       <Row appState={appState} onColClick={onColClick}></Row>
     </table>
   );
