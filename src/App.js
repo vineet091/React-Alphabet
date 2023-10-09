@@ -47,12 +47,11 @@ export default function App() {
   );
 }
 
-const Col = ({ colId, onColClick, appState }) => {
+const Table = ({ appState, onColClick }) => {
   return (
-    <td
-      className={`col ${appState.indexOf(colId) > -1 ? "selected" : ""}`}
-      onClick={() => onColClick(colId)}
-    ></td>
+    <table>
+      <Row appState={appState} onColClick={onColClick}></Row>
+    </table>
   );
 };
 
@@ -76,10 +75,11 @@ const Row = ({ appState, onColClick }) => {
   return rows;
 };
 
-const Table = ({ appState, onColClick }) => {
+const Col = ({ colId, onColClick, appState }) => {
   return (
-    <table>
-      <Row appState={appState} onColClick={onColClick}></Row>
-    </table>
+    <td
+      className={`col ${appState.indexOf(colId) > -1 ? "selected" : ""}`}
+      onClick={() => onColClick(colId)}
+    ></td>
   );
 };
