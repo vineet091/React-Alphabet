@@ -19,11 +19,16 @@ export default function App() {
     this.debounce = debounce(setTimer, 2000);
   }, []);
 
+  useEffect(() => {
+    if (appState.length) {
+      this.debounce(appState);
+    }
+  }, [appState]);
   const setTimer = (count) => {
     console.log(count);
-    let app = [...count];
-    app.pop();
-    setAppState(app);
+    let appCount = [...count];
+    appCount.pop();
+    setAppState(appCount);
   };
 
   const onColClick = (cellId) => {
@@ -34,9 +39,6 @@ export default function App() {
       setAppState([cellId]);
     }
   };
-  if (appState.length) {
-    this.debounce(appState);
-  }
 
   return (
     <div className="App">
