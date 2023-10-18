@@ -1,6 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import "./styles.css";
-const AppStructure = [[1, 2, 3], [4], [5, 6, 7]];
+const AppStructure = Array.from(Array(5), (row, index) => {
+  const half = Math.ceil(index / 2);
+  if (index % 2 === 0) {
+    return Array.from(
+      Array(3),
+      (col, index2) => half * 3 + (index - half) * 1 + index2 + 1
+    );
+  } else {
+    return Array.from(
+      Array(1),
+      (col, index2) => half * 3 + (index - half) * 1 + index2 + 1
+    );
+  }
+});
 
 const debounce = (func, time) => {
   let timer;
@@ -24,6 +37,7 @@ export default function App() {
       this.debounce(appState);
     }
   }, [appState]);
+
   const setTimer = (count) => {
     console.log(count);
     let appCount = [...count];
@@ -39,7 +53,7 @@ export default function App() {
       setAppState([cellId]);
     }
   };
-
+  console.log(AppStructure, "AppStructure");
   return (
     <div className="App">
       <Table appState={appState} onColClick={onColClick} />
